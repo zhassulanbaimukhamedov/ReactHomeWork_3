@@ -7,6 +7,25 @@ function Todo() {
   const [color, setColor] = useState("green");
   const [age, setAge] = useState(20);
   const [year, setYear] = useState(0);
+  const [inputValues, setInputValues] = useState({
+    input1: 0,
+    input2: 0,
+    input3: 0,
+    input4: 0,
+    input5: 0
+  });
+  const [avrgSum, setAvrgSum] = useState(0);
+  const changeInput = ({ name, value }) => {
+    inputValues[name] = Number(value);
+    calcAvrgSum(inputValues);
+  };
+  const calcAvrgSum = (values) => {
+    let sum = 0;
+    for (var i in inputValues) {
+      sum += inputValues[i];
+    }
+    setAvrgSum(sum / 5);
+  };
 
   return (
     <div>
@@ -47,12 +66,32 @@ function Todo() {
         </h2>
         <h4>Решение:</h4>
         <div>
-          <input type="text" />
-          <input type="text" />
-          <input type="text" />
-          <input type="text" />
-          <input type="text" />
-          <p>Cр.зн.: </p>
+          <input
+            type="number"
+            name="input1"
+            onChange={({ target }) => changeInput(target)}
+          />
+          <input
+            type="number"
+            name="input2"
+            onChange={({ target }) => changeInput(target)}
+          />
+          <input
+            type="number"
+            name="input3"
+            onChange={({ target }) => changeInput(target)}
+          />
+          <input
+            type="number"
+            name="input4"
+            onChange={({ target }) => changeInput(target)}
+          />
+          <input
+            type="number"
+            name="input5"
+            onChange={({ target }) => changeInput(target)}
+          />
+          <p>Cр.зн.: {avrgSum} </p>
         </div>
       </div>
     </div>
